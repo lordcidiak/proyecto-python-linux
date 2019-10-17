@@ -18,6 +18,10 @@ while menu_choice != 7:
         print "Numeros de telefono:"
         for x in numbers.keys():
             print "Nombre: ",x," \tNumero: ",numbers[x]
+            if numbers[x] == listablanca[x]:
+            print "Esta en la lista blanca"
+            if numbers[x] == listanegra[x]:
+            print "Esta en la lista negra"
     elif menu_choice == 2:
         print "Numeros de telefono:"
         for x in listablanca.keys():
@@ -52,5 +56,5 @@ while menu_choice != 7:
             print "El numero es ",numbers[nombre]
         else:
             print "Este ",nombre,"no se encuentra en la agenda "
-    elif menu_choice != 5:
+    elif menu_choice != 7:
         print_menu()
