@@ -8,17 +8,18 @@ def print_menu():
     print ('7. salir')
 numbers = {}
 listablanca = {}
+tipo = {}
 listanegra = {}
 menu_choice = 0
 print_menu()
 while menu_choice != 7:
-    menu_choice = input("Escribe un numero (1-7):")
+    menu_choice = int(input("Escribe un numero (1-7):"))
     
     
     if menu_choice == 1:
-        print ("Numeros de telefono:")
+        print ("La agenda es:")
         for x in numbers.keys():
-            print ("Nombre: ",x," \tNumero: ",numbers[x])
+            print ("Nombre: ",x," \tNumero: ",x,"\tTipo:",numbers[x])
             
             
     elif menu_choice == 2:
@@ -35,19 +36,27 @@ while menu_choice != 7:
             
     elif menu_choice == 4:
         print ("ingresa el nombre, el numero y si va para la lista blanca o lista negra")
-        nombre = raw_input("Nombre:")
-        numero = raw_input("Numero:")
+        nombre = input("Nombre:")
+        numero = input("Numero:")
         numbers[nombre] = numero
-        lista = raw_input("lista blanca 1, lista negra 2:")
+        lista = int(input("lista blanca 1, lista negra 2:"))
         if lista == 1:
             listablanca[nombre] = numero
+            tipo = ("lista blanca")
+            numbers[nombre] = tipo
+
+
         elif lista == 2:
             listanegra[nombre] = numero
+            tipo = ("lista negra")
+            numbers[nombre] = tipo
+
+
             
             
     elif menu_choice == 5:
         print ("eliminar el contacto")
-        nombre = raw_input("Nombre:")
+        nombre = input("Nombre:")
         if numbers.has_key(nombre):
             del numbers[nombre]
             del listablanca[nombre]
@@ -58,11 +67,15 @@ while menu_choice != 7:
             
     elif menu_choice == 6:
         print ("buscar el numero de la persona")
-        nombre = raw_input("nombre:")
+        nombre = input("nombre:")
         if numbers.has_key(nombre):
             print ("El numero es ",numbers[nombre])
         else:
             print("Este ",nombre,"no se encuentra en la agenda ")
             
+    elif menu_choice != 7:
+        menu()
             
+    
+
     
