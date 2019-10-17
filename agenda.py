@@ -1,15 +1,15 @@
 def print_menu():
     print ('1. imprimir la agenda completa')
-    print ('2. imrpimir lista blanca')
-    print ('3. imprimir lista negra')
+    print ('2. imrpimir lista buena')
+    print ('3. imprimir lista mala')
     print ('4. ingresar numero nuevo')
     print ('5. remover numero')
     print ('6. buscar un numero')
     print ('7. salir')
 numbers = {}
-listablanca = {}
+listabuena = {}
 tipo = {}
-listanegra = {}
+listamala = {}
 menu_choice = 0
 print_menu()
 while menu_choice != 7:
@@ -24,31 +24,31 @@ while menu_choice != 7:
             
     elif menu_choice == 2:
         print ("Numeros de telefono:")
-        for x in listablanca.keys():
-            print ("Nombre: ",x," \tNumero: ",listablanca[x])
+        for x in listabuena.keys():
+            print ("Nombre: ",x," \tNumero: ",listabuena[x])
             
             
     elif menu_choice == 3:
         print( "Numeros de telefono:")
-        for x in listanegra.keys():
-            print ("Nombre: ",x," \tNumero: ",listanegra[x]  ) 
+        for x in listamala.keys():
+            print ("Nombre: ",x," \tNumero: ",listamala[x]  ) 
             
             
     elif menu_choice == 4:
-        print ("ingresa el nombre, el numero y si va para la lista blanca o lista negra")
+        print ("ingresa el nombre, el numero y si va para la lista buena o lista mala")
         nombre = input("Nombre:")
         numero = input("Numero:")
         numbers[nombre] = numero
-        lista = int(input("lista blanca 1, lista negra 2:"))
+        lista = int(input("lista buena 1, lista mala 2:"))
         if lista == 1:
-            listablanca[nombre] = numero
-            tipo = ("lista blanca")
+            listabuena[nombre] = numero
+            tipo = ("esta en la lista buena")
             numbers[nombre] = tipo
 
 
         elif lista == 2:
-            listanegra[nombre] = numero
-            tipo = ("lista negra")
+            listamala[nombre] = numero
+            tipo = ("esta en la lista mala")
             numbers[nombre] = tipo
 
 
@@ -59,10 +59,10 @@ while menu_choice != 7:
         nombre = input("Nombre:")
         if nombre in numbers:
             del(numbers[nombre])
-        if nombre in listablanca:
-            del(listablanca[nombre])
-        if nombre in listanegra:
-            del(listanegra[nombre])
+        if nombre in listabuena:
+            del(listabuena[nombre])
+        if nombre in listamala:
+            del(listamala[nombre])
         else:
             print( "Este ",nombre,"no se encuentra en la agenda ")
             
