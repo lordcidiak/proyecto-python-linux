@@ -20,18 +20,24 @@ while menu_choice != 7:
         print ("La agenda es:")
         for x in directorio.keys():
             print ("Nombre: ",x," \tNumero: ",directorio[x],"\tTipo:",nombres[x])
+        print_menu()
+
             
             
     elif menu_choice == 2:
         print ("Lista buena:")
         for x in listabuena.keys():
             print ("Nombre: ",x," \tNumero: ",listabuena[x])
+        print_menu()
+
             
             
     elif menu_choice == 3:
         print( "Lista mala:")
         for x in listamala.keys():
             print ("Nombre: ",x," \tNumero: ",listamala[x]  ) 
+        print_menu()
+
             
             
     elif menu_choice == 4:
@@ -44,12 +50,16 @@ while menu_choice != 7:
             listabuena[nombre] = numero
             tipo = ("esta en la lista buena")
             nombres[nombre]=tipo
+            print_menu()
+
 
 
         elif lista == 2:
             listamala[nombre] = numero
             tipo = ("esta en la lista mala")
             nombres[nombre]=tipo
+            print_menu()
+
             
             
     elif menu_choice == 5:
@@ -57,12 +67,20 @@ while menu_choice != 7:
         nombre = input("Nombre:")
         if nombre in directorio:
             del(directorio[nombre])
+            print_menu()
+
         if nombre in listabuena:
             del(listabuena[nombre])
+            print_menu()
+
         if nombre in listamala:
             del(listamala[nombre])
+            print_menu()
+
         else:
             print( "Este ",nombre,"no se encuentra en la agenda ")
+            print_menu()
+
             
             
     elif menu_choice == 6:
@@ -72,8 +90,10 @@ while menu_choice != 7:
             print ("El numero es ",directorio[nombre])
         else:
             print("Este ",nombre,"no se encuentra en la agenda ")
+            print_menu()
+
             
     elif menu_choice != 7:
-        menu()
+        print_menu()
             
     
