@@ -6,33 +6,42 @@ def print_menu():
     print '5. salir'
     print
 numbers = {}
+listablanca = {}
+listanegra = {}
 menu_choice = 0
 print_menu()
 while menu_choice != 5:
-    menu_choice = input("Type in a number (1-5):")
+    menu_choice = input("Escribe un numero (1-5):")
     if menu_choice == 1:
-        print "Telephone Numbers:"
+        print "Numeros de telefono:"
         for x in numbers.keys():
-            print "Name: ",x," \tNumber: ",numbers[x]
+            print "Nombre: ",x," \tNumero: ",numbers[x]
         print
     elif menu_choice == 2:
-        print "Add Name and Number"
-        name = raw_input("Name:")
-        phone = raw_input("Number:")
-        numbers[name] = phone
+        print "ingresa el nombre, el numero y si va para la lista blanca o lista negra"
+        nombre = raw_input("Nombre:")
+        numero = raw_input("Numero:")
+        numbers[nombre] = numero
+        lista = raw_input("lista blanca 1, lista negra 2:")
+        if lista == 1:
+            listablanca[nombre] = numero
+        elif lista == 2:
+            listanegra[nombre] = numero
     elif menu_choice == 3:
-        print "Remove Name and Number"
-        name = raw_input("Name:")
-        if numbers.has_key(name):
-            del numbers[name]
+        print "eliminar el contacto"
+        name = raw_input("Nombre:")
+        if numbers.has_key(nombre):
+            del numbers[nombre]
+            del listablanca[nombre]
+            del listanegra[nombre]
         else:
-            print name," was not found"
+            print "Este ",nombre,"no se encuentra en la agenda "
     elif menu_choice == 4:
-        print "Lookup Number"
-        name = raw_input("Name:")
-        if numbers.has_key(name):
-            print "The number is",numbers[name]
+        print "buscar el numero de la persona"
+        name = raw_input("nombre:")
+        if numbers.has_key(nombre):
+            print "El numero es ",numbers[nombre]
         else:
-            print name," was not found"
+            print "Este ",nombre,"no se encuentra en la agenda "
     elif menu_choice != 5:
         print_menu()
