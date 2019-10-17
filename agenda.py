@@ -57,10 +57,12 @@ while menu_choice != 7:
     elif menu_choice == 5:
         print ("eliminar el contacto")
         nombre = input("Nombre:")
-        if numbers.has_key(nombre):
-            del numbers[nombre]
-            del listablanca[nombre]
-            del listanegra[nombre]
+        if nombre in numbers:
+            del(numbers[nombre])
+        if nombre in listablanca:
+            del(listablanca[nombre])
+        if nombre in listanegra:
+            del(listanegra[nombre])
         else:
             print( "Este ",nombre,"no se encuentra en la agenda ")
             
@@ -68,7 +70,7 @@ while menu_choice != 7:
     elif menu_choice == 6:
         print ("buscar el numero de la persona")
         nombre = input("nombre:")
-        if numbers.has_key(nombre):
+        if nombre in numbers:
             print ("El numero es ",numbers[nombre])
         else:
             print("Este ",nombre,"no se encuentra en la agenda ")
@@ -76,6 +78,4 @@ while menu_choice != 7:
     elif menu_choice != 7:
         menu()
             
-    
-
     
