@@ -1,4 +1,4 @@
- #!/usr/bin/env python3
+  #!/usr/bin/env python3
 import os
 import shutil
 from datetime import datetime
@@ -9,23 +9,20 @@ class PhotoOrganizer:
     extensions = ['jpg', 'jpeg', 'JPG', 'JPEG','png','avi']
 
     def folder_to_photodate(self, file):
-        date = self.photo_info_date(file)
-        return date.strftime('%Y') + '/' + date.strftime('%Y-%m-%d') + '/' + date.strftime('thumbnail')
+        fecha = self.photo_info_date(file)
+        return fecha.strftime('%Y') + '/' + fecha.strftime('%Y-%m-%d') 
 
     def photo_info_date(self, file):
 
         photo = Image.open(file)
         info = photo._getexif()
-        date = datetime.fromtimestamp(os.path.getmtime(file))
+        fecha = datetime.fromtimestamp(os.path.getmtime(file))
         if info:
             if 36867 in info:
-                date = info[36867]
-                date = datetime.strptime(date, '%Y:%m:%d %H:%M:%S')
-        return date
-        imagen = Image.open(file)
-        miniatura = (100, 100)
-        imagen.thumbnail(miniatura)
-        imagen.save(file)
+                fecha = info[36867]
+                fecha = datetime.strptime(fecha, '%Y:%m:%d %H:%M:%S')
+        return fecha
+        
 
     def move_photo(self, file):
         new_folder = self.folder_to_photodate(file)
