@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ #!/usr/bin/env python3
 import os
 import shutil
 from datetime import datetime
@@ -6,13 +6,13 @@ from PIL import Image
 
 
 class PhotoOrganizer:
-    extensions = ['jpg', 'jpeg', 'JPG', 'JPEG','mp4','avi']
+    extensions = ['jpg', 'jpeg', 'JPG', 'JPEG','png','avi']
 
-    def folder_path_from_photo_date(self, file):
-        date = self.photo_shooting_date(file)
+    def folder_to_photodate(self, file):
+        date = self.photo_info_date(file)
         return date.strftime('%Y') + '/' + date.strftime('%Y-%m-%d')
 
-    def photo_shooting_date(self, file):
+    def photo_info_date(self, file):
         photo = Image.open(file)
         info = photo._getexif()
         date = datetime.fromtimestamp(os.path.getmtime(file))
@@ -23,7 +23,7 @@ class PhotoOrganizer:
         return date
 
     def move_photo(self, file):
-        new_folder = self.folder_path_from_photo_date(file)
+        new_folder = self.folder_to_photodate(file)
         if not os.path.exists(new_folder):
             os.makedirs(new_folder)
         shutil.move(file, new_folder + '/' + file)
@@ -34,6 +34,10 @@ class PhotoOrganizer:
         ]
         for filename in photos:
             self.move_photo(filename)
+            
+    def folder_to_thumbnail(self, file):
+        date = self.photo_info_date(file)
+        return date.strftime('%Y') + '/' + date.strftime('%Y-%m-%d')
 
 
 PO = PhotoOrganizer()
