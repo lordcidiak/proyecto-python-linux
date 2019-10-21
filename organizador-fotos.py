@@ -10,9 +10,10 @@ class PhotoOrganizer:
 
     def folder_to_photodate(self, file):
         date = self.photo_info_date(file)
-        return date.strftime('%Y') + '/' + date.strftime('%Y-%m-%d')
+        return date.strftime('%Y') + '/' + date.strftime('%Y-%m-%d') + '/' + date.strftime('thumbnail')
 
     def photo_info_date(self, file):
+
         photo = Image.open(file)
         info = photo._getexif()
         date = datetime.fromtimestamp(os.path.getmtime(file))
@@ -21,6 +22,10 @@ class PhotoOrganizer:
                 date = info[36867]
                 date = datetime.strptime(date, '%Y:%m:%d %H:%M:%S')
         return date
+        imagen = Image.open(file)
+        miniatura = (100, 100)
+        imagen.thumbnail(miniatura)
+        imagen.save(file)
 
     def move_photo(self, file):
         new_folder = self.folder_to_photodate(file)
@@ -34,11 +39,10 @@ class PhotoOrganizer:
         ]
         for filename in photos:
             self.move_photo(filename)
-            
-    def folder_to_thumbnail(self, file):
-        date = self.photo_info_date(file)
-        return date.strftime('%Y') + '/' + date.strftime('%Y-%m-%d')
+
+
 
 
 PO = PhotoOrganizer()
 PO.organize()
+
